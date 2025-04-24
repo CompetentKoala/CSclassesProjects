@@ -1,0 +1,23 @@
+{
+  "files.associations": {
+    "*.json": "json",
+    "iostream": "cpp",
+    "ostream": "cpp",
+    "iosfwd": "cpp",
+    "typeinfo": "cpp",
+    "__locale": "cpp",
+    "ios": "cpp",
+    "istream": "cpp",
+    "iomanip": "cpp",
+    "__bit_reference": "cpp",
+    "algorithm": "cpp",
+    "bitset": "cpp",
+    "chrono": "cpp",
+    "unordered_map": "cpp",
+    "sstream": "cpp",
+    "cctype": "cpp",
+    "__node_handle": "cpp",
+    "fstream": "cpp",
+    "stack": "cpp"
+  }
+}

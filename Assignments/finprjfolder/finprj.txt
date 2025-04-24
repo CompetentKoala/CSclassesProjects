@@ -1,0 +1,10 @@
+Monstera;partial;2;N;Lovely with big leaves
+Snake Plant;shade;1;Y;Tolerant and low maintenance
+Aloe Vera;full;1;N;Succulent with healing properties
+Spider Plant;partial;3;Y;Great for hanging baskets
+Peace Lily;shade;3;N;Blooms indoors with low light
+Fiddle Leaf Fig;full;2;N;Needs space and bright light
+Pothos;shade;2;N;Easy to propagate
+Calathea;partial;4;Y;Loves humidity and indirect light
+Rubber Plant;full;1;N;Waxy leaves and tall growth
+Boston Fern;shade;4;Y;Thrives in humidity, safe for pets
