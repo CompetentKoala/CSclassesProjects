@@ -1,5 +1,6 @@
 #include "plantUtils.h"
 
+// Opens a file for reading plant data
 int openFile(ifstream &plantData, char file[])
 {
     plantData.open(file);
@@ -11,6 +12,7 @@ int openFile(ifstream &plantData, char file[])
     return 0;
 }
 
+// Reads data from file into the plants array
 void createDataArray(ifstream &plantData, Plant plants[MAXPLANTS], int &plantCount)
 {
     while (plantData.getline(plants[plantCount].plantName, MAXCHAR, ';'))
@@ -23,20 +25,22 @@ void createDataArray(ifstream &plantData, Plant plants[MAXPLANTS], int &plantCou
         plantData.getline(plants[plantCount].notes, MAXNOTECHAR);
         plantCount++;
     }
-    
 }
 
+// Displays the main menu options
 void displayMenu()
 {
     cout << "\nPlease choose an option from the menu below\n";
     cout << "(A)dd new plant\n(R)emove a plant\n(P)rint all plants\n(S)earch by sunlight\n(F)ind pet-safe plants\n(Q)uit\n>> ";
 }
 
+// Displays a welcome message
 void welcome()
 {
     cout << "\nWelcome to the plant collection program!\n";
 }
 
+// Handles the user's menu choice and calls the correct function
 void chooseOption(char &choice, ifstream &plantDataIn, ostream &plantDataOut, Plant plants[MAXPLANTS], int &plantCount)
 {
     cin >> choice;
@@ -67,6 +71,7 @@ void chooseOption(char &choice, ifstream &plantDataIn, ostream &plantDataOut, Pl
         break;
     case 'Q':
         cout << "\nYou chose to QUIT!\n";
+        cout << "\nThanks for using my final project Plant Collector!\n";
         break;
     default:
         cout << "Invalid input. Please enter: A, R, P, S, Q\n";
@@ -75,6 +80,7 @@ void chooseOption(char &choice, ifstream &plantDataIn, ostream &plantDataOut, Pl
     }
 }
 
+// Adds a new plant with user input and validation
 void addPlant(ifstream &plantData, Plant plants[MAXPLANTS], int &plantCount)
 {
     if (plantCount >= MAXPLANTS)
@@ -125,14 +131,18 @@ void addPlant(ifstream &plantData, Plant plants[MAXPLANTS], int &plantCount)
     cout << "\nPlant Added!\n";
 }
 
+// Removes a plant by name and shifts the array
 void removePlant(Plant plants[MAXPLANTS], int &plantCount)
 {
     char plantToRemove[MAXCHAR];
+    bool found = false;
+
     cout << "\nType the name of the plant you wish to remove exactly as it was entered: ";
     cin.ignore(100, '\n');
     cin.getline(plantToRemove, MAXCHAR);
 
-    for (int i = 0; i < plantCount; i++)
+    int i = 0;
+    while (i < plantCount && !found)
     {
         if (strcmp(plants[i].plantName, plantToRemove) == 0)
         {
@@ -141,13 +151,25 @@ void removePlant(Plant plants[MAXPLANTS], int &plantCount)
                 plants[j] = plants[j + 1];
             }
             plantCount--;
-            cout << "\nThe " << plantToRemove << " was removed from the list\n";
-            return;
+            found = true;
+        }
+        else
+        {
+            i++;
         }
     }
-    cout << "\nThe " << plantToRemove << " plant was not found!\n";
+
+    if (found)
+    {
+        cout << "\nThe " << plantToRemove << " was removed from the list\n";
+    }
+    else
+    {
+        cout << "\nThe " << plantToRemove << " plant was not found!\n";
+    }
 }
 
+// Prints the full list of plants in table format
 void printPlantArray(ostream &plantData, Plant plants[MAXPLANTS], int plantCount)
 {
     cout << setw(21) << left << "\nPlant Name" << setw(12) << "Sunlight" << setw(10)
@@ -163,6 +185,7 @@ void printPlantArray(ostream &plantData, Plant plants[MAXPLANTS], int plantCount
     }
 }
 
+// Searches and prints plants matching the sunlight type
 void searchSunlightAmount(Plant plants[MAXPLANTS], int &plantCount)
 {
     char sunlightType[MAXCHAR];
@@ -175,9 +198,20 @@ void searchSunlightAmount(Plant plants[MAXPLANTS], int &plantCount)
     }
 
     cout << "\nHere are plants that need " << sunlightType << " sunlight:\n";
-    printPlantArray(cout, plants, plantCount); // could filter here
+    for (int i = 0; i < plantCount; i++)
+    {
+        if (strcmp(plants[i].sunlightNeeded, sunlightType) == 0)
+        {
+            cout << setw(20) << left << plants[i].plantName;
+            cout << setw(14) << plants[i].sunlightNeeded;
+            cout << setw(11) << plants[i].wateringPerWeek;
+            cout << setw(10) << plants[i].petSafe;
+            cout << plants[i].notes << endl;
+        }
+    }
 }
 
+// Displays all plants that are safe for pets
 void searchPetSafePlants(Plant plants[MAXPLANTS], int &plantCount)
 {
     cout << "\nHere are the pet-safe plants:\n";
@@ -197,6 +231,7 @@ void searchPetSafePlants(Plant plants[MAXPLANTS], int &plantCount)
     }
 }
 
+// Saves the current plant data back to a file
 void savePlantDataToFile(const char filename[], Plant plants[MAXPLANTS], int plantCount)
 {
     ofstream outFile(filename);
