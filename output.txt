@@ -1,0 +1,60 @@
+cameron@Camerons-MacBook-Pro CSclassesProjects % ./midterm
+Enter option: +
+Integer: 9
+[9]
+
+Enter option: +
+Integer: 3
+[9, 3]
+
+Enter option: +
+Integer: -2
+[9, 3, -2]
+
+Enter option: +
+Integer: 10
+Error: Queue Overflow!
+[9, 3, -2]
+
+Enter option: -
+Integer: 5
+5 is not in the queue.
+[9, 3, -2]
+
+Enter option: -
+Integer: 3
+[-2]
+
+Enter option: @
+invalid option
+[-2]
+
+Enter option: p
+invalid option
+[-2]
+
+Enter option: -2
+Integer: 2 is not in the queue.
+[-2]
+
+Enter option: -
+Integer: 0
+0 is not in the queue.
+[-2]
+
+Enter option: -
+Integer: -2
+[]
+
+Enter option: -
+Integer: 0
+Queue Empty.
+[]
+
+Enter option: +
+Integer: 23
+[23]
+
+Enter option: q
+
+Goodbye!
