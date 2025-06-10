@@ -7,7 +7,7 @@ void readInput(int * x, int * y);
 void swapInt(int * x, int * y);
 
 
-//main function
+//main functionn
 int main() {
     int x = 0;
     int y = 0;
